@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+    <FrameLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPageBg"
+            >
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                >
+                <!--头内容布局-->
+                <RelativeLayout
+                    android:id="@+id/header_container"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    >
+                    <include layout="@layout/head_bookdetail_content"/>
+                    </RelativeLayout>
+                <!--内容布局-->
+                <RelativeLayout
+                    android:id="@+id/container"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    >
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        >
+                        <!--<include layout="@layout/fragment_base"/>-->
+                        <include layout="@layout/layout_book_detail"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/title_container"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            >
+            <ImageView
+                android:id="@+id/iv_titlebar_bg"
+                android:layout_height="310dp"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tb_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/transparent"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="enterAlways|scroll"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ToolbarStyle"
+                >
+                </android.support.v7.widget.Toolbar>
+
+            </RelativeLayout>
+        </FrameLayout>
+
+</LinearLayout>
