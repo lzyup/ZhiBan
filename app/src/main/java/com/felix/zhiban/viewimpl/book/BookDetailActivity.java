@@ -25,6 +25,7 @@ import com.felix.zhiban.R;
 import com.felix.zhiban.base.BaseActivity;
 import com.felix.zhiban.bean.book.Books;
 import com.felix.zhiban.presenter.DouBanBookPresenter;
+import com.felix.zhiban.presenter.DoubanBookDetailPresenter;
 import com.felix.zhiban.tool.ImageUtils.ImageLoaderFactory;
 import com.felix.zhiban.tool.Utils;
 import com.felix.zhiban.viewinterface.book.IGetBookDetailView;
@@ -67,6 +68,7 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
     private Books books;
 
     private DouBanBookPresenter douBanBookPresenter;
+    private DoubanBookDetailPresenter doubanBookDetailPresenter;
 
 
 
@@ -112,12 +114,14 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
 
     private void initData(){
         books=new Books();
-        douBanBookPresenter=new DouBanBookPresenter(this);
+       // douBanBookPresenter=new DouBanBookPresenter(this);
+        doubanBookDetailPresenter=new DoubanBookDetailPresenter(this);
         Intent intent=getIntent();
         if(intent!=null){
             String id=intent.getStringExtra("id");
             if(!TextUtils.isEmpty(id)){
-                douBanBookPresenter.getBookById(this,id);
+                //douBanBookPresenter.getBookById(this,id);
+                doubanBookDetailPresenter.getBookById(this,id);
             }
         }
 //        initToolBar();
