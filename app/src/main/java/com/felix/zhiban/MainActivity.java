@@ -71,12 +71,27 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void showContentView() {
+
+    }
+
+    @Override
+    protected void showError() {
+
+    }
+
+    @Override
+    protected void showLoading() {
+
+    }
+
     private void initView(){
         coordinatorLayout=(CoordinatorLayout)findViewById(R.id.coordinatorlayout);
         appBarLayout=(AppBarLayout)findViewById(R.id.appbarlayout);
         viewPager=(ViewPager)findViewById(R.id.viewpager);
         radioGroup=(RadioGroup)findViewById(R.id.radiogroup);
-        navigationView=(NavigationView)findViewById(R.id.design_navigation_view);
+        navigationView=(NavigationView)findViewById(R.id.design_navigation_view_left);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout_home);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(defalutThemeColor);
