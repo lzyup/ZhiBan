@@ -7,9 +7,10 @@ import android.os.AsyncTask;
 import com.felix.zhiban.api.Url;
 import com.felix.zhiban.base.BasePresenter;
 import com.felix.zhiban.bean.book.BookRoot;
+import com.felix.zhiban.presenterinterface.IDoubanBookPresenter;
 import com.felix.zhiban.viewinterface.book.ISearchBookByTagView;
 
-public class DouBanBookPresenter extends BasePresenter{
+public class DouBanBookPresenter extends BasePresenter implements IDoubanBookPresenter{
     private  ISearchBookByTagView iSearchBookByTagView;
 
     private boolean isLoadMore;
@@ -21,11 +22,12 @@ public class DouBanBookPresenter extends BasePresenter{
 //        this.isLoadMore=isLoadMore;
     }
 
-    public void searchBookByTag(ISearchBookByTagView iSearchBookByTagView1,String tag,boolean isLoadMore1){
-        iSearchBookByTagView=iSearchBookByTagView1;
-        isLoadMore=isLoadMore1;
-        SearchBookByTagTask searchBookByTagTask=new SearchBookByTagTask();
-        searchBookByTagTask.execute(tag);
+    @Override
+    public void searchBookByTag(ISearchBookByTagView iSearchBookByTagView1, String tag, boolean isLoadMore1) {
+            iSearchBookByTagView=iSearchBookByTagView1;
+            isLoadMore=isLoadMore1;
+            SearchBookByTagTask searchBookByTagTask=new SearchBookByTagTask();
+            searchBookByTagTask.execute(tag);
 
     }
 
