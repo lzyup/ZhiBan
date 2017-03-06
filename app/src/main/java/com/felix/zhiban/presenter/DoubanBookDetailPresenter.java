@@ -8,9 +8,10 @@ import android.util.Log;
 import com.felix.zhiban.api.Url;
 import com.felix.zhiban.base.BasePresenter;
 import com.felix.zhiban.bean.book.Books;
+import com.felix.zhiban.presenterinterface.IDoubanBookDetailPresenter;
 import com.felix.zhiban.viewinterface.book.IGetBookDetailView;
 
-public class DoubanBookDetailPresenter extends BasePresenter {
+public class DoubanBookDetailPresenter extends BasePresenter implements IDoubanBookDetailPresenter {
 
     private IGetBookDetailView iGetBookDetailView;
 
@@ -19,15 +20,20 @@ public class DoubanBookDetailPresenter extends BasePresenter {
         super(mContext);
     }
 
+
     /**
      *
      * @param id
      */
-    public void getBookById(IGetBookDetailView iGetBookDetailView1,String id){
-        iGetBookDetailView=iGetBookDetailView1;
-        GetBookByIdTask getBookByIdTask=new GetBookByIdTask();
-        getBookByIdTask.execute(id);
+    @Override
+    public void getBookById(IGetBookDetailView iGetBookDetailView1, String id) {
+            iGetBookDetailView=iGetBookDetailView1;
+            GetBookByIdTask getBookByIdTask=new GetBookByIdTask();
+            getBookByIdTask.execute(id);
     }
+
+
+
 
 
     /**
@@ -44,9 +50,22 @@ public class DoubanBookDetailPresenter extends BasePresenter {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            iGetBookDetailView.showLoading();
+        }
+
+        @Override
         protected void onPostExecute(Books books) {
             super.onPostExecute(books);
-            displayBookDetail(iGetBookDetailView, books);
+            if(books==null){
+
+                iGetBookDetailView.showError();
+            }else{
+                iGetBookDetailView.showContentView();
+                displayBookDetail(iGetBookDetailView, books);
+            }
+
         }
     }
 
@@ -55,4 +74,5 @@ public class DoubanBookDetailPresenter extends BasePresenter {
         Log.v("xgf book","得到books");
         iGetBookDetailView.getBookSuccess(books);
     }
+
 }
