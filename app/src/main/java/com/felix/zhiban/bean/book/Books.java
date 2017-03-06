@@ -102,6 +102,7 @@ public class Books implements Serializable{
 //        translator = in.createStringArrayList();
 //        publisher = in.readString();
 //        pubdate = in.readString();
+//        rating=in.readParcelable(Rating.class.getClassLoader());
 //        binding = in.readString();
 //        price = in.readString();
 //        pages = in.readString();
@@ -353,6 +354,7 @@ public class Books implements Serializable{
 //        parcel.writeStringList(translator);
 //        parcel.writeString(publisher);
 //        parcel.writeString(pubdate);
+//        parcel.writeParcelable(this.Rating,0);
 //        parcel.writeString(binding);
 //        parcel.writeString(price);
 //        parcel.writeString(pages);
