@@ -25,6 +25,7 @@ import com.felix.zhiban.bean.book.BookRoot;
 import com.felix.zhiban.bean.book.Books;
 import com.felix.zhiban.control.SpacesItemDecoration;
 import com.felix.zhiban.presenter.DouBanBookPresenter;
+import com.felix.zhiban.presenterinterface.IDoubanBookPresenter;
 import com.felix.zhiban.tool.Utils;
 import com.felix.zhiban.viewinterface.book.ISearchBookByTagView;
 
@@ -48,7 +49,7 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
 
     private LinearLayoutManager mLayoutManager;
 
-    private DouBanBookPresenter douBanBookPresenter;
+    private IDoubanBookPresenter iDoubanBookPresenter;
 
     private List<String> listTag;
 
@@ -143,7 +144,7 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
                 @Override
                 public void onClick(View view) {
                     showLoading();
-                    douBanBookPresenter.searchBookByTag(BookByTagFragment.this,tag,false);
+                    iDoubanBookPresenter.searchBookByTag(BookByTagFragment.this,tag,false);
                 }
             });
         }
@@ -156,13 +157,13 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
         String[] strTag= BookApiTag.getApiTag(position);
         listTag= Arrays.asList(strTag);
         scrollRecycleView();
-        douBanBookPresenter=new DouBanBookPresenter(getContext());
+        iDoubanBookPresenter=new DouBanBookPresenter(getContext());
 
         //swipeRefreshLayout.setColorSchemeColors();
         swipeRefreshLayout.setOnRefreshListener(this);
 
         tag=BookApiTag.getRandomTAG(listTag);
-        douBanBookPresenter.searchBookByTag(this,tag,false);
+        iDoubanBookPresenter.searchBookByTag(this,tag,false);
         adapter=new BookByTagAdapter(getActivity());
         mLayoutManager=new GridLayoutManager(getActivity(),3);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -209,7 +210,7 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
         showLoading();
         listTag=Arrays.asList(BookApiTag.getApiTag(position));
         String tag=BookApiTag.getRandomTAG(listTag);
-        douBanBookPresenter.searchBookByTag(BookByTagFragment.this,tag,false);
+        iDoubanBookPresenter.searchBookByTag(BookByTagFragment.this,tag,false);
         swipeRefreshLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -263,7 +264,7 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
                             public void run() {
                                 String tag=BookApiTag.getRandomTAG(listTag);
 
-                                douBanBookPresenter.searchBookByTag(BookByTagFragment.this,tag,true);
+                                iDoubanBookPresenter.searchBookByTag(BookByTagFragment.this,tag,true);
 
                             }
                         },1000);
