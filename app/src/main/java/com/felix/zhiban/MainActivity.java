@@ -71,21 +71,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void showContentView() {
-
-    }
-
-    @Override
-    protected void showError() {
-
-    }
-
-    @Override
-    protected void showLoading() {
-
-    }
-
     private void initView(){
         coordinatorLayout=(CoordinatorLayout)findViewById(R.id.coordinatorlayout);
         appBarLayout=(AppBarLayout)findViewById(R.id.appbarlayout);
