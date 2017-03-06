@@ -93,6 +93,20 @@ public abstract class   BaseActivity extends BaseFragmentActivity implements IBa
 //
 //    }
 
+//    /**
+//     * 加载完成的状态
+//     */
+//     protected abstract void showContentView();
+//
+//    /**
+//     * 加载失败
+//     */
+//    protected abstract void showError();
+//
+//    /**
+//     * 正在加载
+//     */
+//    protected abstract void showLoading();
 
     @TargetApi(19)
     protected void setTranslucentStatus(boolean on) {
