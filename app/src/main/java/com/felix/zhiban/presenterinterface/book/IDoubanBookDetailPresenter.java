@@ -1,4 +1,4 @@
-package com.felix.zhiban.presenterinterface;
+package com.felix.zhiban.presenterinterface.book;
 
 
 import com.felix.zhiban.viewinterface.book.IGetBookDetailView;
