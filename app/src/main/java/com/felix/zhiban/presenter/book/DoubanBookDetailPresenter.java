@@ -1,4 +1,4 @@
-package com.felix.zhiban.presenter;
+package com.felix.zhiban.presenter.book;
 
 
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.util.Log;
 import com.felix.zhiban.api.Url;
 import com.felix.zhiban.base.BasePresenter;
 import com.felix.zhiban.bean.book.Books;
-import com.felix.zhiban.presenterinterface.IDoubanBookDetailPresenter;
+import com.felix.zhiban.presenterinterface.book.IDoubanBookDetailPresenter;
 import com.felix.zhiban.viewinterface.book.IGetBookDetailView;
 
 public class DoubanBookDetailPresenter extends BasePresenter implements IDoubanBookDetailPresenter {
@@ -20,6 +20,10 @@ public class DoubanBookDetailPresenter extends BasePresenter implements IDoubanB
         super(mContext);
     }
 
+    public DoubanBookDetailPresenter(Context mContext, IGetBookDetailView iGetBookDetailView) {
+        super(mContext);
+        this.iGetBookDetailView = iGetBookDetailView;
+    }
 
     /**
      *
