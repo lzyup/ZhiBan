@@ -167,6 +167,7 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
             mAnimationDrawable.start();
         }
 
+
     }
 
     private void initView(){
@@ -209,7 +210,7 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
                 @Override
                 public void onClick(View view) {
                     showLoading();
-                    iDoubanBookDetailPresenter.getBookById(BookDetailActivity.this,id);
+                    iDoubanBookDetailPresenter.getBookById(id);
                 }
             });
         }
@@ -218,13 +219,13 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
     private void initData(){
         books=new Books();
        // douBanBookPresenter=new DouBanBookPresenter(this);
-        iDoubanBookDetailPresenter=new DoubanBookDetailPresenter(this);
+        iDoubanBookDetailPresenter=new DoubanBookDetailPresenter(getContext(),this);
         Intent intent=getIntent();
         if(intent!=null){
              id=intent.getStringExtra("id");
             if(!TextUtils.isEmpty(id)){
                 //douBanBookPresenter.getBookById(this,id);
-                iDoubanBookDetailPresenter.getBookById(this,id);
+                iDoubanBookDetailPresenter.getBookById(id);
             }
         }
 //        initToolBar();
