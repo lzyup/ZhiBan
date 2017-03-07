@@ -51,12 +51,8 @@ public class DoubanBookDetailModel extends BaseModel implements IDoubanBookDetai
         protected void onPostExecute(Books books) {
             super.onPostExecute(books);
             if(books==null){
-
-             //   iGetBookDetailView.showError();
                 doubanBookDetailPresenter.getBookByIdFail();
             }else{
-               // iGetBookDetailView.showContentView();
-                //displayBookDetail(iGetBookDetailView, books);
                 doubanBookDetailPresenter.getBookByIdSuccess(books);
             }
 
