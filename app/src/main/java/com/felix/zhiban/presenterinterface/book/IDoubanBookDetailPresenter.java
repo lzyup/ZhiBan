@@ -1,8 +1,14 @@
 package com.felix.zhiban.presenterinterface.book;
 
 
-import com.felix.zhiban.viewinterface.book.IGetBookDetailView;
+import com.felix.zhiban.bean.book.Books;
 
 public interface IDoubanBookDetailPresenter {
-    void getBookById(IGetBookDetailView iGetBookDetailView1, String id);
+    void getBookById( String id);
+
+    void getBookByIdSuccess(Books books);
+
+    void getBookByIdReady();
+
+    void getBookByIdFail();
 }
