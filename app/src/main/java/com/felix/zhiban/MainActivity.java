@@ -20,6 +20,7 @@ import com.felix.zhiban.base.BaseActivity;
 import com.felix.zhiban.tool.ThemeUtils;
 import com.felix.zhiban.viewimpl.book.BookFragment;
 import com.felix.zhiban.viewimpl.book.TestFragment;
+import com.felix.zhiban.viewimpl.news.NewsFrgment;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ public class MainActivity extends BaseActivity {
     private BookFragment bookFragment2;
 
     private BookFragment bookFragment3;
+
+    private NewsFrgment newsFrgment;
 
     private TestFragment testFragment1;
     private TestFragment testFragment2;
@@ -110,9 +113,10 @@ public class MainActivity extends BaseActivity {
         bookFragment1=BookFragment.newInstance();
         bookFragment2=BookFragment.newInstance();
         bookFragment3=BookFragment.newInstance();
+        newsFrgment=NewsFrgment.newsInstance();
         listFragment.add(bookFragment1);
         listFragment.add(bookFragment2);
-        listFragment.add(bookFragment3);
+        listFragment.add(newsFrgment);
         viewPager.setOffscreenPageLimit(3);
         viewPager.addOnPageChangeListener(onPageChangeListener);
 
