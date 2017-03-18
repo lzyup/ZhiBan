@@ -7,4 +7,16 @@ public class Url {
     public final static String SEARCHBOOKBYTAG=BASE_URL_DBAN+"v2/book/search?tag=";
 
     public final static String GETBOOKDETAIL=BASE_URL_DBAN+"v2/book/";
+
+    public final static String BASETODETAIL_URL_ZHU="http://news-at.zhihu.com/api/4/news/";
+
+    public final static String ZHU_TODAYURL="http://news-at.zhihu.com/api/4/news/latest";
+
+    public final static String ZHU_BEFOREURL="http://news-at.zhihu.com/api/4/news/before/";
+
+    public final static String ZHU_SPORTURL="http://news-at.zhihu.com/api/4/theme/8";
+
+    public final static String ZHU_INTERESTURL="http://news-at.zhihu.com/api/4/theme/11";
+
+    public final static String ZHU_SAFEURL="http://news-at.zhihu.com/api/4/theme/10";
 }
