@@ -255,7 +255,7 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
             }
         }).into(imageViewToolBg);
        // ImageLoaderFactory.getImageLoader().displayGaussian(this,books.getImages().getMedium(),imageViewToolBg);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);//这样点击回退按钮后才有作用
         ActionBar actionBar=getSupportActionBar();
         if(actionBar!=null){
             //去除默认Title显示
