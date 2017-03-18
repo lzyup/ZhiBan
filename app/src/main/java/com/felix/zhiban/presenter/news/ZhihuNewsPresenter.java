@@ -25,14 +25,14 @@ public class ZhihuNewsPresenter extends BasePresenter implements IZhihuNewsPrese
     }
 
     @Override
-    public void getInitNews(boolean isLoadMore) {
+    public void getInitNews(boolean isLoadMore,String title) {
         iGetNewsView.initView();
-        iZhihuNewsModel.initTodayNews(isLoadMore);
+        iZhihuNewsModel.initTodayNews(isLoadMore,title);
     }
 
     @Override
-    public void getScrollNews(boolean isLoadMore) {
-        iZhihuNewsModel.initTodayNews(isLoadMore);
+    public void getScrollNews(boolean isLoadMore,String title) {
+        iZhihuNewsModel.initTodayNews(isLoadMore,title);
 
 
     }
