@@ -21,7 +21,6 @@ import com.felix.zhiban.tool.ThemeUtils;
 import com.felix.zhiban.viewimpl.book.BookFragment;
 import com.felix.zhiban.viewimpl.book.TestFragment;
 import com.felix.zhiban.viewimpl.news.NewsFrgment;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +67,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        StatusBarUtil.setColorNoTranslucentForDrawerLayout(MainActivity.this,drawerLayout,defalutThemeColor);
+        //StatusBarUtil.setColorNoTranslucentForDrawerLayout(MainActivity.this,drawerLayout,defalutThemeColor);
         initEvent();
 
 
@@ -82,7 +81,7 @@ public class MainActivity extends BaseActivity {
         navigationView=(NavigationView)findViewById(R.id.design_navigation_view_left);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout_home);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
-        toolbar.setBackgroundColor(defalutThemeColor);
+        //toolbar.setBackgroundColor(defalutThemeColor);
         //设置Drawerlayout开关指示器,toolbar最左边的icon
         ActionBarDrawerToggle mActionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         mActionBarDrawerToggle.syncState();
