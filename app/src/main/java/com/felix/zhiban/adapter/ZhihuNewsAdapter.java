@@ -1,7 +1,11 @@
 package com.felix.zhiban.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,10 +15,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.felix.zhiban.R;
+import com.felix.zhiban.ZhiBanApp;
 import com.felix.zhiban.bean.zhihunews.RootEntity;
 import com.felix.zhiban.bean.zhihunews.StroriesEntity;
 import com.felix.zhiban.tool.ImageUtils.ImageLoaderFactory;
 import com.felix.zhiban.tool.Utils;
+import com.felix.zhiban.viewimpl.news.NewsDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +156,13 @@ public class ZhihuNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             newstextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Intent intent=new Intent(context, NewsDetailActivity.class);
+                    String id;
+                    id=String.valueOf(stroriesEntity.getId());
+                    intent.putExtra("EXTRA_ID",id);
+                    ActivityOptionsCompat options=ActivityOptionsCompat.makeSceneTransitionAnimation((Activity)context,
+                            newsimageView, ZhiBanApp.mContext.getResources().getString(R.string.transition_news_img));//跳转动画与对应的string xml文件对应
+                    ActivityCompat.startActivity(context,intent,options.toBundle());
                 }
             });
 
