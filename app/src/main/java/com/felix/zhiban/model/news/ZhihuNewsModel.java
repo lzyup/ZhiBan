@@ -26,17 +26,28 @@ public class ZhihuNewsModel extends BaseModel implements IZhihuNewsModel{
     }
 
     @Override
-    public void initTodayNews(boolean isLoadMore1) {
+    public void initTodayNews(boolean isLoadMore1,String title) {
             isLoadMore=isLoadMore1;
            GetNewsTask getNewsTask=new GetNewsTask();
-           getNewsTask.execute();
+           getNewsTask.execute(title);
     }
 
     private class GetNewsTask extends AsyncTask<String,Void,RootEntity>{
 
         @Override
         protected RootEntity doInBackground(String... strings) {
-            RootEntity rootEntity=iNetWorkManager.getLatesNews(Url.ZHU_INTERESTURL);
+            String title=strings[0];
+            RootEntity rootEntity=null;
+            if(title.equals("今日日报")){
+                rootEntity=iNetWorkManager.getLatesNews(Url.ZHU_TODAYURL);
+            }else if(title.equals("不许无聊")){
+                 rootEntity=iNetWorkManager.getInterest(Url.ZHU_INTERESTURL);
+            }else if(title.equals("互联网安全")){
+                rootEntity=iNetWorkManager.getSafety(Url.ZHU_SAFEURL);
+            }else if(title.equals("体育日报")){
+                rootEntity=iNetWorkManager.getSport(Url.ZHU_SPORTURL);
+            }
+
             return rootEntity;
         }
 
