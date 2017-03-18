@@ -26,6 +26,7 @@
             android:layout_height="@dimen/space_80"
             android:layout_width="@dimen/space_80"
             android:scaleType="centerCrop"
+            android:transitionName="@string/transition_news_img"
             />
         <TextView
             android:id="@+id/news_title_tv"
@@ -38,6 +39,8 @@
             android:textSize="20dp"
             tools:text="我还得努力学习好多好多知识呀老哥们"
             />
+
+
         </LinearLayout>
 
 </android.support.v7.widget.CardView>

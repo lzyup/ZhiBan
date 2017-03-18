@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:text="Felix"
             android:layout_marginLeft="15dp"
-            android:textColor="@color/red_base"
+            android:textColor="@color/theme_blue_light"
             android:textSize="16dp"
             />
         </LinearLayout>
