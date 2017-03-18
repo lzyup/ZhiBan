@@ -54,8 +54,11 @@ public class TodayFragment extends BaseFragment implements IGetNewsView, SwipeRe
     //动画
     private AnimationDrawable mAnimationDrawable;
 
-    public static TodayFragment newsInstance(){
+    private String mTitleNews;
+
+    public static TodayFragment newsInstance(String title){
         Bundle args=new Bundle();
+        args.putString("title",title);
         TodayFragment frgment=new TodayFragment();
         frgment.setArguments(args);
         return frgment;
@@ -95,12 +98,16 @@ public class TodayFragment extends BaseFragment implements IGetNewsView, SwipeRe
                 @Override
                 public void onClick(View view) {
                     showNewsLoading();
-                    zhihuNewsPresenter.getInitNews(false);
+                    zhihuNewsPresenter.getInitNews(false,mTitleNews);
                 }
             });
         }
+        Bundle args=getArguments();
+        if(args!=null){
+            mTitleNews=args.getString("title");
+        }
         zhihuNewsPresenter=new ZhihuNewsPresenter(getContext(),this);
-        zhihuNewsPresenter.getInitNews(false);
+        zhihuNewsPresenter.getInitNews(false,mTitleNews);
         zhihuNewsPresenter.getNewsFromscrollRecycleView();
 
 
@@ -209,7 +216,7 @@ public class TodayFragment extends BaseFragment implements IGetNewsView, SwipeRe
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                zhihuNewsPresenter.getScrollNews(true);
+                                zhihuNewsPresenter.getScrollNews(true,mTitleNews);
                             }
                         },1000);
                     }
@@ -227,7 +234,7 @@ public class TodayFragment extends BaseFragment implements IGetNewsView, SwipeRe
 
     @Override
     public void onRefresh() {
-        zhihuNewsPresenter.getScrollNews(false);
+        zhihuNewsPresenter.getScrollNews(false,mTitleNews);
         swipeRefreshLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
