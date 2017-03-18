@@ -29,7 +29,7 @@ public class ThemeUtils {
 
     public static int getThemePosition(){
         SharedPreferences pref = context.getSharedPreferences("ThemeColor",context.MODE_PRIVATE);
-        return pref.getInt("position",0);
+        return pref.getInt("position",2);
     }
 
     public static int getToolBarColor(){
