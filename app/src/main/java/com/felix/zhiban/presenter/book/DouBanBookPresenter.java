@@ -30,12 +30,14 @@ public class DouBanBookPresenter extends BasePresenter implements IDoubanBookPre
 
     @Override
     public void searchBookByTagSuccess(BookRoot bookRoot, boolean isLoadMore) {
+        iSearchBookByTagView.showBooksContentView();
         iSearchBookByTagView.SearchBookByTagSuccess(bookRoot, isLoadMore);
     }
 
     @Override
     public void searchBookByTagFail() {
-        iSearchBookByTagView.SearchBookByTagFail();
+        //iSearchBookByTagView.SearchBookByTagFail();
+        iSearchBookByTagView.showBooksError();
     }
 
 
