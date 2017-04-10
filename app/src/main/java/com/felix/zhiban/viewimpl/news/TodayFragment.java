@@ -116,7 +116,6 @@ public class TodayFragment extends BaseFragment implements IGetNewsView, SwipeRe
 
     @Override
     public void getNewsSuccess(List<StroriesEntity> stroriesEntityList,boolean isLoadMore) {
-        showNewsContentView();
         if(isLoadMore){
             mStroriesEntityList.addAll(stroriesEntityList);
         }else{

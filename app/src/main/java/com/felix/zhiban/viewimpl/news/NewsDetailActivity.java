@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -145,6 +146,12 @@ public class NewsDetailActivity extends BaseActivity implements IGetNewsDetailVi
         initWebViewClient();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        backThActivity();
+        return super.onKeyDown(keyCode, event);
+    }
+
     private void initView(){
         mToolbar=(Toolbar)findViewById(R.id.toolbar);
         mDetailBarImg=(ImageView)findViewById(R.id.img_detail);
@@ -225,16 +232,22 @@ public class NewsDetailActivity extends BaseActivity implements IGetNewsDetailVi
             settings.setBlockNetworkImage(true);
         }
         if(SharePreferencesHelper.getInstance(this).getBoolean(Constants.WebViewSetting.SP_AUTO_CACHE,true)){
+            //启动应用缓存
             settings.setAppCacheEnabled(true);
+            //使用localStorage则必须打开
             settings.setDomStorageEnabled(true);
+
             settings.setDatabaseEnabled(true);
             if(NetUtils.isConnected(this)){
+                //设置缓存模式
                 settings.setCacheMode(WebSettings.LOAD_DEFAULT);
             }else{
                 settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
             }
         }
+        //提醒WebView启用JavaScript执行.默认执行false
         settings.setJavaScriptEnabled(true);
+        //网页内容的宽度是否可以大于WebView控件的宽度
         settings.setLoadWithOverviewMode(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
