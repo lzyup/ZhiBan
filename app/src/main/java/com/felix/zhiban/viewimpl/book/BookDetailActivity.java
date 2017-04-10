@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -107,6 +108,12 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
         initEvent();
         initData();
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        backThActivity();
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

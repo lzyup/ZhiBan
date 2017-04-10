@@ -35,6 +35,7 @@ import java.util.List;
 
 import rx.subscriptions.CompositeSubscription;
 
+
 public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,ISearchBookByTagView {
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -143,7 +144,7 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
             mRefresh.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    showLoading();
+                    showBooksLoading();
                     iDoubanBookPresenter.searchBookByTag(tag,false);
                 }
             });
@@ -172,42 +173,11 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
         recyclerView.setAdapter(adapter);
     }
 
-    //加载完成
-    @Override
-    protected void showContentView() {
-        if(mLoadingAni.getVisibility()==View.VISIBLE){
-            mLoadingAni.setVisibility(View.GONE);
-        }
-        if(mLlloading.getVisibility()==View.VISIBLE){
-            mLlloading.setVisibility(View.GONE);
-        }
-        if(mAnimationDrawable.isRunning()){
-            mAnimationDrawable.stop();
-        }
-        if(mRefresh.getVisibility()==View.VISIBLE){
-            mRefresh.setVisibility(View.GONE);
-        }
-    }
-
-    //加载失败
-    @Override
-    protected void showError() {
-        if (mLlloading.getVisibility() != View.GONE) {
-            mLlloading.setVisibility(View.GONE);
-        }
-        // 停止动画
-        if (mAnimationDrawable.isRunning()) {
-            mAnimationDrawable.stop();
-        }
-        if (mRefresh.getVisibility() != View.VISIBLE) {
-            mRefresh.setVisibility(View.VISIBLE);
-        }
-    }
 
 
     @Override
     public void onRefresh() {
-        showLoading();
+        showBooksLoading();
         listTag=Arrays.asList(BookApiTag.getApiTag(position));
         String tag=BookApiTag.getRandomTAG(listTag);
         iDoubanBookPresenter.searchBookByTag(tag,false);
@@ -222,24 +192,7 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
 
     }
 
-    //正在加载
-    @Override
-    protected void showLoading() {
 
-        if(mLoadingAni.getVisibility()==View.GONE){
-            mLoadingAni.setVisibility(View.VISIBLE);
-        }
-        if(mLlloading.getVisibility()==View.GONE){
-            mLlloading.setVisibility(View.VISIBLE);
-        }
-        if(mRefresh.getVisibility()==View.VISIBLE){
-            mRefresh.setVisibility(View.GONE);
-        }
-        //开始动画
-        if(!mAnimationDrawable.isRunning()){
-            mAnimationDrawable.start();
-        }
-    }
 
     private void scrollRecycleView(){
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -281,7 +234,6 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
     }
     @Override
     public void SearchBookByTagSuccess(BookRoot bookRoot, boolean isLoadMore) {
-        showContentView();
         if(bookRoot!=null) {
             if (isLoadMore) {
                 booksList.addAll(bookRoot.getBooks());
@@ -296,10 +248,52 @@ public class BookByTagFragment extends BaseFragment implements SwipeRefreshLayou
         }
     }
 
-    @Override
-    public void SearchBookByTagFail() {
 
-        showError();
+    @Override
+    public void showBooksContentView() {
+        if(mLoadingAni.getVisibility()==View.VISIBLE){
+            mLoadingAni.setVisibility(View.GONE);
+        }
+        if(mLlloading.getVisibility()==View.VISIBLE){
+            mLlloading.setVisibility(View.GONE);
+        }
+        if(mAnimationDrawable.isRunning()){
+            mAnimationDrawable.stop();
+        }
+        if(mRefresh.getVisibility()==View.VISIBLE){
+            mRefresh.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showBooksError() {
+        if (mLlloading.getVisibility() != View.GONE) {
+            mLlloading.setVisibility(View.GONE);
+        }
+        // 停止动画
+        if (mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.stop();
+        }
+        if (mRefresh.getVisibility() != View.VISIBLE) {
+            mRefresh.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void showBooksLoading() {
+        if(mLoadingAni.getVisibility()==View.GONE){
+            mLoadingAni.setVisibility(View.VISIBLE);
+        }
+        if(mLlloading.getVisibility()==View.GONE){
+            mLlloading.setVisibility(View.VISIBLE);
+        }
+        if(mRefresh.getVisibility()==View.VISIBLE){
+            mRefresh.setVisibility(View.GONE);
+        }
+        //开始动画
+        if(!mAnimationDrawable.isRunning()){
+            mAnimationDrawable.start();
+        }
     }
 
 
