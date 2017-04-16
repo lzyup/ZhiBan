@@ -9,9 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
@@ -93,11 +93,12 @@ public class MainActivity extends BaseActivity {
         sdvHeader.setImageResource(R.drawable.ic_avtar);
         navigationView.inflateMenu(R.menu.menu_nav);
         navigationView.setItemIconTintList(ThemeUtils.getNaviItemIconTinkList());
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar=getSupportActionBar();
-//        if(actionBar!=null){
-//            actionBar.setDisplayShowTitleEnabled(false);
-//        }
+        setSupportActionBar(toolbar);
+        ActionBar actionBar=getSupportActionBar();
+        if(actionBar!=null){
+            //去除默认Title显示
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
     }
 
@@ -124,15 +125,12 @@ public class MainActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i){
                     case R.id.rb_home:
-                        Log.v("xgf121","进入one");
                         currentFragment=0;
                         break;
                     case R.id.rb_film:
-                        Log.v("xgf121","进入two");
                         currentFragment=1;
                         break;
                     case R.id.rb_book:
-                        Log.v("xgf121","进入three");
                         currentFragment=2;
                         break;
                 }
