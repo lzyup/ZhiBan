@@ -49,8 +49,6 @@ public class NewsDetailActivity extends BaseActivity implements IGetNewsDetailVi
 
     //动画布局
     private RelativeLayout relativeLayoutAniContainer;
-    //等待加载的动画布局
-    private LinearLayout mLoadingAni;
     //加载中
     private LinearLayout mLlloading;
     //加载失败
@@ -83,9 +81,7 @@ public class NewsDetailActivity extends BaseActivity implements IGetNewsDetailVi
 
     @Override
     public void showContentView() {
-        if(mLoadingAni!=null&&mLoadingAni.getVisibility()==View.VISIBLE){
-            mLoadingAni.setVisibility(View.GONE);
-        }
+
         if(mLlloading!=null&&mLlloading.getVisibility()==View.VISIBLE){
             mLlloading.setVisibility(View.GONE);
         }
@@ -120,9 +116,7 @@ public class NewsDetailActivity extends BaseActivity implements IGetNewsDetailVi
 
     @Override
     public void showLoading() {
-        if(mLoadingAni!=null&&mLoadingAni.getVisibility()==View.GONE){
-            mLoadingAni.setVisibility(View.VISIBLE);
-        }
+
         if(mLlloading!=null&&mLlloading.getVisibility()==View.GONE){
             mLlloading.setVisibility(View.VISIBLE);
         }
@@ -160,7 +154,6 @@ public class NewsDetailActivity extends BaseActivity implements IGetNewsDetailVi
         mDetailNewsContentWv=(WebView)findViewById(R.id.wv_detail_content);
 
         relativeLayoutAniContainer=(RelativeLayout)findViewById(R.id.ani_container);
-        mLoadingAni=(LinearLayout)findViewById(R.id.loadingAni);
         mLlloading=(LinearLayout)findViewById(R.id.ll_loading);
         mRefresh=(LinearLayout)findViewById(R.id.ll_error_refresh);
         imageView=(ImageView)findViewById(R.id.img_progress);
