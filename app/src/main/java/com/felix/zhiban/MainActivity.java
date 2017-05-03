@@ -20,6 +20,7 @@ import com.felix.zhiban.base.BaseActivity;
 import com.felix.zhiban.tool.ThemeUtils;
 import com.felix.zhiban.viewimpl.book.BookFragment;
 import com.felix.zhiban.viewimpl.book.TestFragment;
+import com.felix.zhiban.viewimpl.film.FilmFragment;
 import com.felix.zhiban.viewimpl.news.NewsFrgment;
 
 import java.util.ArrayList;
@@ -51,6 +52,8 @@ public class MainActivity extends BaseActivity {
     private BookFragment bookFragment3;
 
     private NewsFrgment newsFrgment;
+
+    private FilmFragment filmFragment;
 
     private TestFragment testFragment1;
     private TestFragment testFragment2;
@@ -93,12 +96,12 @@ public class MainActivity extends BaseActivity {
         sdvHeader.setImageResource(R.drawable.ic_avtar);
         navigationView.inflateMenu(R.menu.menu_nav);
         navigationView.setItemIconTintList(ThemeUtils.getNaviItemIconTinkList());
-        setSupportActionBar(toolbar);
-        ActionBar actionBar=getSupportActionBar();
-        if(actionBar!=null){
-            //去除默认Title显示
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar=getSupportActionBar();
+//        if(actionBar!=null){
+//            //去除默认Title显示
+//            actionBar.setDisplayShowTitleEnabled(false);
+//        }
 
     }
 
@@ -114,8 +117,9 @@ public class MainActivity extends BaseActivity {
         bookFragment2=BookFragment.newInstance();
         bookFragment3=BookFragment.newInstance();
         newsFrgment=NewsFrgment.newsInstance();
+        filmFragment=FilmFragment.newInstance();
         listFragment.add(bookFragment1);
-        listFragment.add(bookFragment2);
+        listFragment.add(filmFragment);
         listFragment.add(newsFrgment);
         viewPager.setOffscreenPageLimit(3);
         viewPager.addOnPageChangeListener(onPageChangeListener);
