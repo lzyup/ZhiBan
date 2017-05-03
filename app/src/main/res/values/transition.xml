@@ -2,4 +2,6 @@
 <resources>
 
     <string name="transition_book_img">transition_book_img</string>
+    <string name="transition_news_img">transition_news_img</string>
+    <string name="transition_film_img">transition_film_img</string>
 </resources>

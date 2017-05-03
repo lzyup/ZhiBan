@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="colorDayPrimary">#00A2ED</color>
+    <color name="colorDayPrimaryDark">#008FD2</color>
+    <color name="colorDayAccent">#008FD2</color>
     <color name="transparent">#00000000</color>
     <color name="main_blue_light">#3F56B5</color>
     <color name="main_blue_dark">#30459E</color>
@@ -61,4 +64,10 @@
     <color name="black_90">#dd000000</color>
 
     <color name="trangery">#512e2e2e</color>
+
+    <!--知乎详细界面-->
+    <color name="colorDayWindowBackground">#F3F3F3</color>
+    <color name="colorLightGray">#E0E0E0</color>
+
+    <color name="itemLowBackground">#d9d9d9</color>
 </resources>
