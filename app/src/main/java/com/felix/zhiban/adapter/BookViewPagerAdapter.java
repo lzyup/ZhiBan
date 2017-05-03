@@ -15,7 +15,8 @@ public class BookViewPagerAdapter extends FragmentStatePagerAdapter {
         this.mTitles=mTitles;
     }
 
-    @Override public CharSequence getPageTitle(int position) {
+    @Override
+    public CharSequence getPageTitle(int position) {
         return mTitles[position];
     }
     @Override

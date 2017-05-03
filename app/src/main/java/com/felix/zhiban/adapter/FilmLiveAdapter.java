@@ -1,6 +1,5 @@
 package com.felix.zhiban.adapter;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,16 +17,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.felix.zhiban.R;
+
 import com.felix.zhiban.ZhiBanApp;
-import com.felix.zhiban.bean.book.Books;
+import com.felix.zhiban.bean.filmdetail.FilmDetail;
+import com.felix.zhiban.bean.filmusbox.Subject;
+import com.felix.zhiban.bean.top250.Subjects;
 import com.felix.zhiban.tool.ImageUtils.ImageLoaderFactory;
 import com.felix.zhiban.tool.Utils;
-import com.felix.zhiban.viewimpl.book.BookDetailActivity;
+import com.felix.zhiban.viewimpl.film.FilmDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-public class BookByTagAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+/**
+ * Created by XiaGF on 2017/4/30.
+ */
+
+public class FilmLiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
 
     private int status=1;
@@ -43,44 +51,44 @@ public class BookByTagAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private static final int TYPE_FOOTER=-2;
 
-    private List<Books>list;
+    private List<Subject> list;
 
-    public BookByTagAdapter(Context context){
+    public FilmLiveAdapter(Context context){
         this.context=context;
         list=new ArrayList<>();
-    }
 
-    @Override
-    public int getItemViewType(int position) {
-
-        if (position + 1 == getItemCount()) {
-            return TYPE_FOOTER;
-        } else {
-            return position;
-        }
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType==TYPE_FOOTER){
             View view=View.inflate(parent.getContext(), R.layout.activity_view_footer,null);
-            return new FooterViewHolder(view);
+            return new FilmLiveAdapter.FooterViewHolder(view);
         }else{
+            Log.v("xgffilm","电影0");
             View rootView=View.inflate(parent.getContext(),R.layout.item_book_bytag,null);
-            return new BookByTagViewHolder(rootView);
+            return new FilmLiveAdapter.FilmLiveViewHolder(rootView);
         }
-
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof FooterViewHolder){
-            FooterViewHolder footerViewHolder=(FooterViewHolder)holder;
+        if(holder instanceof FilmLiveAdapter.FooterViewHolder){
+            FilmLiveAdapter.FooterViewHolder footerViewHolder=(FilmLiveAdapter.FooterViewHolder)holder;
             footerViewHolder.bindItem();
-        }else if(holder instanceof BookByTagViewHolder){
-            BookByTagViewHolder bookByTagViewHolder=(BookByTagViewHolder)holder;
-            bookByTagViewHolder.bindItem(list.get(position),position);
+        }else if(holder instanceof FilmLiveAdapter.FilmLiveViewHolder){
+            Log.v("xgffilm","电影");
+            FilmLiveAdapter.FilmLiveViewHolder filmLiveViewHolder=(FilmLiveAdapter.FilmLiveViewHolder)holder;
+            filmLiveViewHolder.bindItem(list.get(position),position);
         }
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position + 1 == getItemCount()) {
+            return TYPE_FOOTER;
+        } else {
+            return position;
+        }
     }
 
     @Override
@@ -131,7 +139,7 @@ public class BookByTagAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         notifyDataSetChanged();
     }
 
-    class BookByTagViewHolder extends RecyclerView.ViewHolder{
+    class FilmLiveViewHolder extends RecyclerView.ViewHolder{
 
         private LinearLayout llBook;
 
@@ -141,7 +149,7 @@ public class BookByTagAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         private TextView tvFilmGrade;
 
-        public BookByTagViewHolder(View itemView) {
+        public FilmLiveViewHolder(View itemView) {
             super(itemView);
             llBook=(LinearLayout)itemView.findViewById(R.id.ll_book);
             ivFilm=(ImageView)itemView.findViewById(R.id.iv_film);
@@ -149,7 +157,7 @@ public class BookByTagAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvFilmGrade=(TextView)itemView.findViewById(R.id.tv_film_grade);
         }
 
-        private void bindItem(final Books books, int position){
+        private void bindItem(final Subject data, int position){
             ViewGroup.LayoutParams params=ivFilm.getLayoutParams();
             int width= Utils.getScreenWIdthDp(context);
             int ivwidth=(width-Utils.dp2px(context,80))/3;
@@ -157,37 +165,41 @@ public class BookByTagAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             double height=(420.0/300.0)*ivwidth;
             params.height=(int)height;
             ivFilm.setLayoutParams(params);
-            if(!TextUtils.isEmpty(books.getImages().getLarge())){
-                ImageLoaderFactory.getImageLoader().displayForImageView(context, books.getImages().getLarge(),ivFilm);
+
+            ivFilm.setTransitionName(context.getResources().getString(R.string.transition_film_img));
+            if(!TextUtils.isEmpty(data.getImages().getLarge())){
+                ImageLoaderFactory.getImageLoader().displayForImageView(context, data.getImages().getLarge(),ivFilm);
             }
-            if(!TextUtils.isEmpty(books.getRating().getAverage())){
-                tvFilmGrade.setText("评分:"+ books.getRating().getAverage());
+            if(!TextUtils.isEmpty(""+data.getRating().getAverage())){
+                tvFilmGrade.setText("评分:"+ String.valueOf(data.getRating().getAverage()));
             }else{
                 tvFilmGrade.setText("暂无评分");
             }
-            if(!TextUtils.isEmpty(books.getTitle())){
-                tvFilmName.setText(books.getTitle());
+            if(!TextUtils.isEmpty(data.getTitle())){
+                tvFilmName.setText(data.getTitle());
             }
             llBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(context, BookDetailActivity.class);
-                    intent.putExtra("id",books.getId());
-                    ActivityOptionsCompat options =
-                            ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
-                                    ivFilm,ZhiBanApp.mContext.getResources().getString(R.string.transition_book_img));//与xml文件对应
-                    ActivityCompat.startActivity(context, intent, options.toBundle());
+                    Intent intent=new Intent(context, FilmDetailActivity.class);
+                    intent.putExtra("id",data.getId());
+//                    ActivityOptionsCompat options =
+//                            ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
+//                                    ivFilm, ZhiBanApp.mContext.getResources().getString(R.string.transition_film_img));//与xml文件对应
+//                   ActivityCompat.startActivity(context, intent, options.toBundle());
+                    context.startActivity(intent);
+
                 }
             });
         }
     }
-    public List<Books> getList(){
+    public List<Subject> getList(){
         return list;
     }
 
-    public void setList(List<Books>list){
+    public void setList(List<Subject> list){
 
-       this.list=list;
+        this.list=list;
     }
 
 }
