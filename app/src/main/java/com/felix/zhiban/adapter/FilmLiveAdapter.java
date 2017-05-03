@@ -183,11 +183,11 @@ public class FilmLiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 public void onClick(View view) {
                     Intent intent=new Intent(context, FilmDetailActivity.class);
                     intent.putExtra("id",data.getId());
-//                    ActivityOptionsCompat options =
-//                            ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
-//                                    ivFilm, ZhiBanApp.mContext.getResources().getString(R.string.transition_film_img));//与xml文件对应
-//                   ActivityCompat.startActivity(context, intent, options.toBundle());
-                    context.startActivity(intent);
+                    ActivityOptionsCompat options =
+                            ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
+                                    ivFilm, ZhiBanApp.mContext.getResources().getString(R.string.transition_film_img));//与xml文件对应
+                   ActivityCompat.startActivity(context, intent, options.toBundle());
+                   // context.startActivity(intent);
 
                 }
             });
