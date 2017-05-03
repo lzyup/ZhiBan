@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_item_film_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_filmdetail_item_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        >
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:scaleType="centerCrop"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/txt_film_personname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_gray_6"
+                android:textSize="16dp"
+                />
+            <TextView
+                android:id="@+id/txt_film_persontype"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/text_gray_9"
+                android:textSize="13dp"
+                />
+            </LinearLayout>
+        </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/ll_item_film_detail"
+        android:background="@color/divider_gray_line"
+        />
+
+</RelativeLayout>
