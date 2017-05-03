@@ -24,8 +24,8 @@ public class UniversalImageLoaderManager implements IImageLoaderManager {
 
     @Override
     public void displayForImageView(Context context, String uri, ImageView imageView) {
-        Glide.with(context).load(uri)
-//                .error("")
+        Glide.with(context)
+                .load(uri)
                 .into(imageView);
     }
 
@@ -39,5 +39,13 @@ public class UniversalImageLoaderManager implements IImageLoaderManager {
                 .bitmapTransform(new BlurTransformation(context,23,4))
                 .into(imageView);
 
+    }
+
+    @Override
+    public void displaycrossFade(Context context, String uri, ImageView imageView) {
+        Glide.with(context)
+                .load(uri)
+                .crossFade()
+                .into(imageView);
     }
 }
