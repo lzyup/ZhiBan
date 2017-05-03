@@ -3,7 +3,6 @@ package com.felix.zhiban.model.book;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.felix.zhiban.api.Url;
 import com.felix.zhiban.base.BaseModel;
@@ -36,7 +35,6 @@ public class DoubanBookDetailModel extends BaseModel implements IDoubanBookDetai
         @Override
         protected Books doInBackground(String... strings) {
             String id=strings[0];
-            Log.v("xgf121","进入获取图书详情");
             Books mBooks =iNetWorkManager.getBookDetail(Url.GETBOOKDETAIL,id);
             return mBooks;
         }
