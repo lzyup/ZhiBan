@@ -61,8 +61,6 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
 
     //动画布局
     private RelativeLayout relativeLayoutAniContainer;
-    //等待加载的动画布局
-    private LinearLayout mLoadingAni;
     //加载中
     private LinearLayout mLlloading;
     //加载失败
@@ -103,7 +101,7 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout__bookdetail_base);
+        setContentView(R.layout.layout_bookdetail_base);
         initView();
         initEvent();
         initData();
@@ -118,9 +116,6 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
 
     @Override
     public void showContentView() {
-        if(mLoadingAni!=null&&mLoadingAni.getVisibility()==View.VISIBLE){
-            mLoadingAni.setVisibility(View.GONE);
-        }
         if(mLlloading!=null&&mLlloading.getVisibility()==View.VISIBLE){
             mLlloading.setVisibility(View.GONE);
         }
@@ -160,9 +155,6 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
 
     @Override
     public void showLoading() {
-        if(mLoadingAni!=null&&mLoadingAni.getVisibility()==View.GONE){
-            mLoadingAni.setVisibility(View.VISIBLE);
-        }
         if(mLlloading!=null&&mLlloading.getVisibility()==View.GONE){
             mLlloading.setVisibility(View.VISIBLE);
         }
@@ -192,9 +184,8 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
         getTextViewPulishPlace=(TextView)findViewById(R.id.tv_publish_place);
 
         relativeLayoutAniContainer=(RelativeLayout)findViewById(R.id.ani_container);
-        mLoadingAni=(LinearLayout)findViewById(R.id.loadingAni);
-        mLlloading=(LinearLayout)findViewById(R.id.ll_loading);
-        mRefresh=(LinearLayout)findViewById(R.id.ll_error_refresh);
+        mLlloading=(LinearLayout)findViewById(R.id.ll_loading);//正在加载
+        mRefresh=(LinearLayout)findViewById(R.id.ll_error_refresh);//加载失败
         imageView=(ImageView)findViewById(R.id.img_progress);
 
         textViewBookSummary=(TextView)findViewById(R.id.tv_book_summary);
@@ -280,7 +271,7 @@ public class BookDetailActivity extends BaseActivity implements IGetBookDetailVi
             }
         });
         toolbar.setTitle(books.getTitle());
-        toolbar.setSubtitle("作者: "+books.getSubtitle());
+        toolbar.setSubtitle("作者: "+books.getAuthor());
 
     }
 
