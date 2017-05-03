@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.felix.zhiban.bean.book.Books;
 import com.felix.zhiban.bean.book.BookRoot;
+import com.felix.zhiban.bean.filmdetail.FilmDetail;
+import com.felix.zhiban.bean.filmlive.FilmLive;
+import com.felix.zhiban.bean.top250.Root;
 import com.felix.zhiban.bean.zhihunews.RootEntity;
 import com.felix.zhiban.bean.zhihunews.StroyDetailEntity;
 import com.google.gson.Gson;
@@ -14,6 +17,9 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+
+import static com.felix.zhiban.api.Url.COUNT_TOP250;
+import static com.felix.zhiban.api.Url.START_TOP250;
 
 public class NetWorkManager implements INetWorkManager {
 
@@ -79,6 +85,83 @@ public class NetWorkManager implements INetWorkManager {
             e.printStackTrace();
         }
         return books;
+    }
+
+    @Override
+    public FilmLive searchFilmLive(String url) {
+        FilmLive filmLive=null;
+        Gson gson=new Gson();
+        OkHttpClient mOkHttpClient=new OkHttpClient();
+        String urltemp=url;
+
+        Request request=new Request.Builder()
+                            .url(urltemp)
+                            .build();
+        //new call
+        Call call=mOkHttpClient.newCall(request);
+
+        try {
+            Response response=call.execute();
+            if(response.isSuccessful()){
+                String temp=response.body().string();
+                filmLive=gson.fromJson(temp,FilmLive.class);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return filmLive;
+    }
+
+    @Override
+    public Root searchFilmTop250(String url) {
+        Root root=null;
+        Gson gson=new Gson();
+        OkHttpClient mOkHttpClient=new OkHttpClient();
+        String urltemp=url;
+
+        Request request=new Request.Builder()
+                                    .url(urltemp)
+                                    .build();
+
+        //new call
+        Call call=mOkHttpClient.newCall(request);
+
+        try {
+            Response response=call.execute();
+            if(response.isSuccessful()){
+                String temp=response.body().string();
+                root=gson.fromJson(temp,Root.class);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return root;
+    }
+
+    @Override
+    public FilmDetail getFilmDetail(String url, String id) {
+        FilmDetail filmDetail=null;
+        Gson gson=new Gson();
+        OkHttpClient mOkHttpClient=new OkHttpClient();
+        String urltemp=url+id;
+
+        Request request=new Request.Builder()
+                                    .url(urltemp)
+                                    .build();
+
+        //new call
+        Call call=mOkHttpClient.newCall(request);
+
+        try {
+            Response response=call.execute();
+            if(response.isSuccessful()){
+                String temp=response.body().string();
+                filmDetail=gson.fromJson(temp,FilmDetail.class);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return filmDetail;
     }
 
     @Override
