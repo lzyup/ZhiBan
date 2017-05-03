@@ -6,6 +6,9 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.felix.zhiban.bean.filmdetail.FilmPeople;
+import com.felix.zhiban.bean.top250.Directors;
+
 import java.util.List;
 
 public class Utils {
@@ -57,7 +60,7 @@ public class Utils {
 
 
     /**
-     * 格式化导演 主演名字
+     * 格式化电影类型名字
      */
     public static String formatName(List<String> cast){
         if(cast!=null&&cast.size()>0){
@@ -72,6 +75,22 @@ public class Utils {
             return stringBuilder.toString();
         }else{
 
+            return "佚名";
+        }
+    }
+
+    public static String formatFilmPeolep(List<FilmPeople>casts){
+        if(casts!=null&&casts.size()>0){
+            StringBuilder stringBuilder=new StringBuilder();
+            for(int i=0;i<casts.size();i++){
+                if(i< casts.size()-1){
+                    stringBuilder.append(casts.get(i).getName()).append("/");
+                }else{
+                    stringBuilder.append(casts.get(i).getName());
+                }
+            }
+            return stringBuilder.toString();
+        }else{
             return "佚名";
         }
     }
